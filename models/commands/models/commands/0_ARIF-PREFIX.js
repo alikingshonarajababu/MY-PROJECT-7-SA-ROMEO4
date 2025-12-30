@@ -1,0 +1,107 @@
+module.exports.config = {
+  name: "prefix",
+  version: "2.0.0",
+  hasPermssion: 0,
+  credits: "ABHI BABU",
+  description: "Show bot prefix with date & time",
+  commandCategory: "system",
+  usages: "prefix",
+  cooldowns: 5
+};
+
+module.exports.handleEvent = async ({ event, api }) => {
+  const { threadID, messageID, body } = event;
+
+  if (!body) return;
+
+  const trigger = ["prefix", "mprefix", "mpre", "bot prefix", "prefix kya hai"];
+  if (!trigger.includes(body.toLowerCase())) return;
+
+  const threadSetting =
+    global.data.threadData.get(parseInt(threadID)) || {};
+  const prefix = threadSetting.PREFIX || global.config.PREFIX;
+
+  // 🇮🇳 INDIA DATE & TIME
+  const now = new Date();
+
+  const time = now.toLocaleTimeString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  });
+
+  const date = now.toLocaleDateString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
+
+  const day = now.toLocaleDateString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    weekday: "long"
+  });
+
+  const msg = `
+▰▰▰▰▰ ★ • ✧ • ★ ▰▰▰▰▰
+   🎉 ✧ PREFIX ✧ ✅
+✦••┈┈┈┈┈┈┈ ✧ ┈┈┈┈┈┈┈••✦
+
+✰ PREFIX ➪ ${prefix}
+✰ TIME ➪ ${time}
+✰ DATE ➪ ${date}
+✰ DAY ➪ ${day}
+
+༺══─────────══༻
+MADE BY ❤️‍🔥 ARIF BABU
+`;
+
+  return api.sendMessage(msg, threadID, messageID);
+};
+
+module.exports.run = async ({ event, api }) => {
+  const threadSetting =
+    global.data.threadData.get(parseInt(event.threadID)) || {};
+  const prefix = threadSetting.PREFIX || global.config.PREFIX;
+
+  // 🇮🇳 INDIA DATE & TIME
+  const now = new Date();
+
+  const time = now.toLocaleTimeString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  });
+
+  const date = now.toLocaleDateString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
+
+  const day = now.toLocaleDateString("en-IN", {
+    timeZone: "Asia/Kolkata",
+    weekday: "long"
+  });
+
+  const msg = `
+▰▰▰▰▰ ★ • ✧ • ★ ▰▰▰▰▰
+   🎉 ✧ PREFIX ✧ ✅
+✦••┈┈┈┈┈┈┈ ✧ ┈┈┈┈┈┈┈••✦
+
+✰ PREFIX ➪ ${prefix}
+✰ TIME ➪ ${time}
+✰ DATE ➪ ${date}
+✰ DAY ➪ ${day}
+
+༺══─────────══༻
+MADE BY ❤️‍🔥 ARIF BABU
+`;
+
+  return api.sendMessage(msg, event.threadID);
+};
