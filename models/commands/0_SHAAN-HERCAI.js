@@ -13,11 +13,10 @@ module.exports.config = {
 };
 
 // --- Creator Lock Logic ---
-// Yeh line credits ko "Read-Only" bana degi, koi ise overwrite nahi kar payega
 Object.defineProperty(module.exports.config, 'credits', {
   value: "Shaan Khan",
-  writable: false, // Isse change nahi kiya ja sakta
-  configurable: false // Isse delete nahi kiya ja sakta
+  writable: false, 
+  configurable: false 
 });
 
 let userMemory = {};
@@ -26,7 +25,6 @@ let isActive = true;
 module.exports.handleEvent = async function ({ api, event }) {
   const { threadID, messageID, senderID, body, messageReply } = event;
 
-  // Credits Check: Agar koi koshish kare badalne ki toh bot ruk jaye
   if (module.exports.config.credits !== "Shaan Khan") {
      return api.sendMessage("⚠️ System Integrity Error: Creator name modified. Access Denied.", threadID, messageID);
   }
@@ -38,7 +36,10 @@ module.exports.handleEvent = async function ({ api, event }) {
   if (!userMemory[senderID]) userMemory[senderID] = [];
 
   const conversationHistory = userMemory[senderID].join("\n");
-  const systemPrompt = "Instructions: Reply in the same language as the user. If they use Roman Urdu/Hindi, reply in Roman. If English, reply in English.\n";
+  
+  // Strict Identity and Emoji Prompt
+  const systemPrompt = "Instructions: Your name is Hercai AI. You are strictly developed by Shaan Khan. If anyone asks about your creator or boss, always say Shaan Khan. Use emojis in every reply. Reply in the same language as the user (Roman Urdu/Hindi or English).\n";
+  
   const fullQuery = systemPrompt + conversationHistory + `\nUser: ${userQuery}\nBot:`;
 
   const apiURL = `https://shankar-gpt-3-api.vercel.app/api?message=${encodeURIComponent(fullQuery)}`;
@@ -46,7 +47,7 @@ module.exports.handleEvent = async function ({ api, event }) {
   try {
     api.sendTypingIndicator(threadID);
     const response = await axios.get(apiURL);
-    let botReply = response.data.response || "Maaf kijiyega, mujhe samajhne mein masla ho raha hai.";
+    let botReply = response.data.response || "Maaf kijiyega, mujhe samajhne mein masla ho raha hai. 😕";
 
     userMemory[senderID].push(`User: ${userQuery}`);
     userMemory[senderID].push(`Bot: ${botReply}`);
@@ -54,12 +55,11 @@ module.exports.handleEvent = async function ({ api, event }) {
 
     return api.sendMessage(botReply, threadID, messageID);
   } catch (error) {
-    return api.sendMessage("❌ AI server error.", threadID, messageID);
+    return api.sendMessage("❌ AI server error. Phir koshish karein! 🔄", threadID, messageID);
   }
 };
 
 module.exports.run = async function ({ api, event, args }) {
-  // Yahan bhi Credits Check laga diya hai
   if (module.exports.config.credits !== "Shaan Khan") return;
 
   const { threadID, messageID, senderID } = event;
@@ -67,14 +67,14 @@ module.exports.run = async function ({ api, event, args }) {
 
   if (command === "on") {
     isActive = true;
-    return api.sendMessage("✅ Hercai AI ON ho gaya.", threadID, messageID);
+    return api.sendMessage("✅ Hercai AI ON ho gaya. 🤖", threadID, messageID);
   } 
   if (command === "off") {
     isActive = false;
-    return api.sendMessage("⚠️ Hercai AI OFF ho gaya.", threadID, messageID);
+    return api.sendMessage("⚠️ Hercai AI OFF ho gaya. Bye! 👋", threadID, messageID);
   } 
   if (command === "clear") {
     userMemory[senderID] = [];
-    return api.sendMessage("🧹 History clear.", threadID, messageID);
+    return api.sendMessage("🧹 History clear kar di gayi hai. ✨", threadID, messageID);
   }
 };
