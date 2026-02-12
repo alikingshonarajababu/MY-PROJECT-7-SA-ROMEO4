@@ -1,34 +1,34 @@
 module.exports.config = {
-	name: "kick",
-	version: "1.0.1", 
-	hasPermssion: 1,
-	credits: "SHAAN BABU",
-	description: "THIS BOT WAS MADE BY MR SHAAN BABU",
-	commandCategory: "KIKED OF THE MEMBER", 
-	usages: "PREFIX", 
-	cooldowns: 0,
+        name: "kick",
+        version: "1.0.1", 
+        hasPermssion: 1,
+        credits: "SHAAN KHAN",
+        description: "THIS BOT WAS MADE BY MR SHAAN KHAN",
+        commandCategory: "KICK MEMBER", 
+        usages: "mention", 
+        cooldowns: 0,
 };
 
 module.exports.languages = {
-	"en": {
-		"error": "सॉरी बॉस कुछ गड़बड़ है 🤔",
-		"needPermssion": "सॉरी बॉस मैं इस ग्रुप में एडमिन नही हूं बिना एडमिन के मैं किसी को रिमूव नही कर सकता 😐✌️",
-		"missingTag": "बॉस जिसको रिमूव करना है ग्रुप से उसको मेंशन करो साथ में 😐✌️"
-	}
+        "en": {
+                "error": "Sorry boss, kuch gadbad hai 🤔",
+                "needPermssion": "Sorry boss, main is group mein admin nahi hoon. Bina admin ke main kisi ko remove nahi kar sakta 😐✌️",
+                "missingTag": "Boss, jisko remove karna hai group se usko mention karo saath mein 😐✌️"
+        }
 }
 
 module.exports.run = async function({ api, event, getText, Threads }) {
-	var mention = Object.keys(event.mentions);
-	try {
-		let dataThread = (await Threads.getData(event.threadID)).threadInfo;
-		if (!dataThread.adminIDs.some(item => item.id == api.getCurrentUserID())) return api.sendMessage(getText("needPermssion"), event.threadID, event.messageID);
-		if(!mention[0]) return api.sendMessage("बॉस जिसको रिमूव करना है ग्रुप से उसको मेंशन करो साथ में 😐✌️",event.threadID);
-		if (dataThread.adminIDs.some(item => item.id == event.senderID)) {
-			for (const o in mention) {
-				setTimeout(() => {
-					api.removeUserFromGroup(mention[o],event.threadID) 
-				},3000)
-			}
-		}
-	} catch { return api.sendMessage(getText("error"),event.threadID) }
+        var mention = Object.keys(event.mentions);
+        try {
+                let dataThread = (await Threads.getData(event.threadID)).threadInfo;
+                if (!dataThread.adminIDs.some(item => item.id == api.getCurrentUserID())) return api.sendMessage(getText("needPermssion"), event.threadID, event.messageID);
+                if(!mention[0]) return api.sendMessage(getText("missingTag"), event.threadID);
+                if (dataThread.adminIDs.some(item => item.id == event.senderID)) {
+                        for (const o in mention) {
+                                setTimeout(() => {
+                                        api.removeUserFromGroup(mention[o], event.threadID) 
+                                }, 3000)
+                        }
+                }
+        } catch { return api.sendMessage(getText("error"), event.threadID) }
 }
