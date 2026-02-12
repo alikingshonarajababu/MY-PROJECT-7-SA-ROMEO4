@@ -1,12 +1,12 @@
-///WARNING THIS BOT IS MADE BY MR PREM BABU AGAR KOI CREADIT NAME CHANGE KREGA USKA FILE BAN HO JAYEGA //////@prem-babu3608//////////
+///WARNING THIS BOT IS MADE BY SHAAN BABU //////@shaan-babu3608//////////
 module.exports.config = {
     name: "sis",
     version: "7.3.1",
     hasPermssion: 0,
-    credits: "PREM BABU",///@prem-babu3608
-    description: "THIS BOT IS ME PREM SHARMA",
+    credits: "SHAAN BABU",///@shaan-babu3608
+    description: "THIS BOT IS ME SHAAN BABU",
     usePrefix: true,
-    commandCategory: "MENTION PATNER",
+    commandCategory: "MENTION PARTNER",
     usages: "PAIR-2",
     cooldowns: 5, 
     dependencies: {
@@ -16,14 +16,14 @@ module.exports.config = {
         "jimp": ""
     }
 };   
-      /////////////PREM BABU////////////
+      /////////////SHAAN BABU////////////
 module.exports.onLoad = async() => {
     const { resolve } = global.nodemodule["path"];
     const { existsSync, mkdirSync } = global.nodemodule["fs-extra"];
     const { downloadFile } = global.utils;
     const dirMaterial = __dirname + `/cache/canvas/`;
     const path = resolve(__dirname, 'cache/canvas', 'arb.png');
-    if (!existsSync(dirMaterial + "canvas")) mkdirSync(dirMaterial, { recursive: true });
+    if (!existsSync(dirMaterial)) mkdirSync(dirMaterial, { recursive: true });
     if (!existsSync(path)) await downloadFile("https://i.imgur.com/3vfcL97.jpeg", path); 
 }
 
@@ -35,7 +35,7 @@ async function makeImage({ one, two }) {
     const __root = path.resolve(__dirname, "cache", "canvas");
 
     let batgiam_img = await jimp.read(__root + "/arb.png");
-    let pathImg = __root + `/batman${one}_${two}.png`;
+    let pathImg = __root + `/shaan_${one}_${two}.png`;
     let avatarOne = __root + `/avt_${one}.png`;
     let avatarTwo = __root + `/avt_${two}.png`;
 
@@ -57,6 +57,7 @@ async function makeImage({ one, two }) {
 
     return pathImg;
 }
+
 async function circle(image) {
     const jimp = require("jimp");
     image = await jimp.read(image);
@@ -71,6 +72,6 @@ module.exports.run = async function ({ event, api, args }) {
     if (!mention[0]) return api.sendMessage("Please mention 1 person.", threadID, messageID);
     else {
         const one = senderID, two = mention[0];
-        return makeImage({ one, two }).then(path => api.sendMessage({ body: "❥︎|===『  ♥️SIS♥️  』===|☻︎", attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
+        return makeImage({ one, two }).then(path => api.sendMessage({ body: "❥︎|===『  ♥️ SHAAN BABU ♥️  』===|☻︎", attachment: fs.createReadStream(path) }, threadID, () => fs.unlinkSync(path), messageID));
     }
-      }
+}
