@@ -1,7 +1,7 @@
 {
-  "name": "SHAAN-KHAN",
+  "name": "𝐒𝐇𝐀𝐀𝐍-𝐊𝐇𝐀𝐍",
   "version": "10.1.1",
-  "description": "MADE BY SHAAN KHAN 🥀",
+  "description": "𝐌𝐀𝐃𝐄 𝐁𝐘 𝐒𝐇𝐀𝐀𝐍 𝐊𝐇𝐀𝐍 🥀",
   "main": "Shaan-Khan-K.js",
   "engines": {
       "node": "20.x",
@@ -26,7 +26,7 @@
       "prince",
       "mental"
   ],
-  "author": "ARIF-BABU 🥀",
+  "author": "SHAAN-KHAN 🥀",
   "license": "GPL-3.0",
   "bugs": {
       "url": "https://github.com/arif-11/arif-bot/issues"
