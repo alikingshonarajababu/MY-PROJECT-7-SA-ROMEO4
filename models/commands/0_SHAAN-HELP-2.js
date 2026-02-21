@@ -3,7 +3,7 @@ module.exports.config = {
   version: "1.0.2",
   hasPermssion: 0,
   credits: "SHAAN BABU",
-  description: "THIS BOT IS MR SHAAN BABU",
+  description: "THIS BOT IS MR 𝐀𝐋𝐈 𝐁𝐀𝐁𝐔",
   usePrefix: true,
   commandCategory: "BOT-ALL-COMMAND-NAME",
   usages: "HELP-2",
@@ -69,7 +69,7 @@ module.exports. run = function({ api, event, args, getText }) {
 
     const siu = `┏━━━━━┓\n    𝐒𝐇𝐀𝐀𝐍-𝐊𝐇𝐀𝐍-𝐊                   ✧═══•❁😛❁•═══✧\n┗━━━━━┛\n\n\n✧═══❁♥️𝐀𝐥𝐥 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐋𝐈𝐒𝐓 ♥️❁═══✧`;
 
- const text = `PAGE 🥀  [ ${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)} ]\n\𝐎𝐔𝐑 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐊𝐄 𝐋𝐈𝐘𝐄  𝐌𝐄𝐍𝐔 𝐋𝐈𝐊𝐇𝐎 \𝐓𝐇𝐈𝐒 𝐁𝐎𝐓 𝐈𝐒 𝐌𝐀𝐃𝐄 𝐁𝐘𝐄  𝐒𝐇𝐀𝐀𝐍-𝐊𝐇𝐀𝐍=𝐊 🙂✌️\n\n\n\n🕊️ ═════ 💋𝐒𝐇𝐀𝐀𝐍-𝐊𝐇𝐀𝐍💋 ═════ 🕊️`;
+ const text = `PAGE 🥀  [ ${page}/${Math.ceil(arrayInfo.length/numberOfOnePage)} ]\n\𝐎𝐔𝐑 𝐂𝐎𝐌𝐌𝐀𝐍𝐃 𝐊𝐄 𝐋𝐈𝐘𝐄  𝐌𝐄𝐍𝐔 𝐋𝐈𝐊𝐇𝐎 \𝐓𝐇𝐈𝐒 𝐁𝐎𝐓 𝐈𝐒 𝐌𝐀𝐃𝐄 𝐁𝐘𝐄  𝐀𝐋𝐈 𝐁𝐀𝐁𝐔 🙂✌️\n\n\n\n🕊️ ═════ 💋𝐀𝐋𝐈 𝐁𝐀𝐁𝐔💋 ═════ 🕊️`;
 
     return api.sendMessage(siu + "\n\n" + msg  + text, threadID, async (error, info) => {
       if (autoUnsend) {
